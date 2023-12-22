@@ -9,7 +9,9 @@
   <!-- Start Boot Strap  -->
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <!-- Start Main Style -->
-  <link rel="stylesheet" href="./css/mainStyle.css">
+  <link rel="stylesheet" href="./css/mainStylecrud.css">
+  <!-- Start Book Mark -->
+  <link rel="stylesheet" href="./css/mainStyleBookMark.css">
 </head>
 <body>
 
@@ -17,8 +19,11 @@
     <div id="loginUser" class="loginUser">
       <i class="fa-solid fa-user-large"></i>
     </div>
-    <p id="userNameLogin">admin</p>
-    <div id="menuToggle" class="btnCountiner d-flex flex-column justify-content-center align-items-center">
+    <h3 id="userNameLogin">
+    <p class="adminText d-none">admin</p>
+    <p class="userText d-none">user</p>
+    </h3>
+    <div id="menuToggle" class="d-none btnCountiner d-flex flex-column justify-content-center align-items-center">
       <ul class='buttonsul'>
         <li>
         <button id="SwitchBtn" class="btn w-100 btn-secondary d-block">Switch Rules</button>
@@ -44,19 +49,19 @@
             <span class="Five fs-1">o</span>
             <span class="Six fs-1">m</span>
             <span class="Seven fs-1">e</span>
-            <span><i class="fa-regular fa-hand-spock fa-shake fs-2"></i></span>
+            <span class="fs-1" ><i class="fa-regular fa-hand-spock fa-shake"></i></span>
             </div> 
           </div>
       </div>
     </div>
     <div id="toplogin" class="toplogin">
       <h2 class=" position-absolute start-50 top-50 translate-middle text-light h1 text-uppercase">
-        Crud System Login
+          System Login
         <i class="fa-solid fa-right-to-bracket"></i>
       </h2>
       <div class="is-valid userName position-absolute w-25">
         <label class="text-white d-flex justify-content-between" for="userName"><p class="m-0">User Name</p>
-          <span class="validationSpan1 m-0 p-0 text-danger d-none">please fill this input
+          <span class="validationSpan1 m-0 p-0 text-danger d-none">incorrect
             <i class="fa-solid fa-triangle-exclamation"></i>
           </span>
         </label>
@@ -66,7 +71,7 @@
     <div id="bottomlogin" class="bottomlogin overflow-hidden">
       <div class="passWord w-25 position-absolute">
         <label class="text-white d-flex justify-content-between" for="passWord"><p class="m-0">PassWord</p>
-          <span class="validationSpan2 m-0 p-0 text-danger d-none">please fill this input
+          <span class="validationSpan2 m-0 p-0 text-danger d-none">incorrect
             <i class="fa-solid fa-triangle-exclamation"></i>
           </span>
         </label>
@@ -74,12 +79,14 @@
         <button id="LoginBtn" class="btn btn-danger mt-3 px-4 mx-auto d-block">Login</button>
       </div>
   </div>
+
+
 <!-- Start Crud System -->
-  <div class="container bg-crud py-3 rounded mt-5">
+  <div id="admin" class="d-none container bg-crud py-3 rounded mt-5">
     <div>
 <div class="d-flex flex-column justify-content-center align-items-center">
   <h1 class="text-white d-inline-block rounded-2 p-3 text-center text-uppercase bg-dark">Crud System</h1>
-  <p class="fs-6 badge bg-secondary pe-4">Store items: <span class="ps-2" id="totalPrice"></span> 
+  <p class="fs-5 badge bg-secondary pe-4">Store items: <span class="ps-2" id="totalPrice"></span> 
     <span id="spanIncrementIcons" class="ps-2 position-relative">
       <i id="increment" class="d-none position-absolute fa-solid fa-up-long"></i>
       <i id="decrement" class="d-none position-absolute fa-solid fa-down-long"></i>
@@ -141,13 +148,84 @@
     </table>
 
   </div>
+<!-- endCrud -->
 
-
-
+<!-- Start Book Mark -->
+<main id="bookMark" class="d-none vh-100 py-5 bg-main">
+  <section>
+    <div class="container text-center">
+    <h1 class="py-2">Bookmarker</h1>
+    <div class="bookmark-body p-3 py-4 mt-5">
+      <h2>
+        <i class="fa-solid fa-bookmark"></i>
+        Bookmark your favorite sites
+        <i class="fa-solid fa-bookmark"></i>
+      </h2>
+      <div class="text-start mb-3">
+        <label class="pb-2 fw-semibold" for="siteName">
+          <i class="fa-solid fa-book-bookmark pe-2 text"></i>
+          Site Name
+        </label>
+        <input placeholder="Bookmark Name" class="form-control" id="siteName" type="text">
+      </div>
+      <div class="text-start mb-3">
+        <label class="pb-2 fw-semibold" for="siteURL">
+          <i class="fa-solid fa-link pe-2"></i>
+          Site URL
+        </label>
+        <input placeholder="Website URL" class="form-control" id="siteURL" type="url">
+      </div>
+      <button class="btn btn-danger px-5" id="submitBtn">Submit</button>
+    </div>
+    <table class="table mt-4 text-center bg-light">
+      <thead>
+        <tr>
+          <th class="text-capitalize">index</th>
+          <th class="text-capitalize">Website Name</th>
+          <th class="text-capitalize">Visit</th>
+          <th class="text-capitalize">Delete</th>
+        </tr>
+      </thead>
+      <tbody id="tableBodyBookMark">
+      </tbody>
+    </table>
+    </div>
+  </section>
+  <section id="validitionAlert" class="d-none z-1 box-info position-absolute start-0 top-0 w-100 h-100 d-flex justify-content-center align-items-center">
+    <div class="box-conent bg-white p-4 rounded-2 shadow-lg">
+      <header class="box-header w-100 d-flex justify-content-between align-items-center mb-4">
+        <div class="circles d-flex">
+          <span class="rounded-circle me-2"></span>
+          <span class="rounded-circle me-2"></span>
+          <span class="rounded-circle me-2"></span>
+        </div>
+        <button class="btn border-0" id="closeBtn">
+          <i class="fa-solid fa-xmark close fs-3"></i>
+        </button>
+      </header>
+      <p class="m-0 pb-2 fontFamily-pacifo">
+        Site Name or Url is not valid, Please follow the rules below :
+      </p>
+      <ol class="rules list-unstyled m-0 ">
+        <li class="alert-ol-p">
+          <i class="fa-regular fa-circle-right p-2"></i>Site name must
+          contain at least 3 characters
+        </li>
+        <li class="alert-ol-p">
+          <i class="fa-regular fa-circle-right p-2"></i>Site URL must be a
+          valid one
+        </li>
+      </ol>
+    </div>
+  </section>
+</main>
+<!-- End Book Mark -->
 
 <!-- Start Bootstrap js  -->
   <script src="./js/bootstrap.bundle.min.js"></script>
   <!-- Starm Main js -->
   <script src="js/Mainjs.js"></script>
+  <!-- Start BookMark -->
+  <script src="./js/BookMark.js"></script>
 </body>
 </html>

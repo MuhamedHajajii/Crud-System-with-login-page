@@ -262,14 +262,10 @@ document.addEventListener("keydown", function (e) {
     loginDisplayChecked();
   }
 });
+
 function loginDisplayChecked() {
-  if (regexPassword.test(passWord.value) == false) {
-    passWord.classList.add("is-invalid");
-  }
-  if (
-    (userName.value == "admin") | (userName.value == "user") &&
-    (passWord.value == "admin") | (passWord.value == "user")
-    ) {
+  if (userName.value == "admin" && passWord.value == "admin" ) {
+
     toplogin.classList.add("topLoginAnimation");
     bottomlogin.classList.add("bottomLoginAnimation");
     var userObject = {
@@ -278,19 +274,43 @@ function loginDisplayChecked() {
     };
     user.push(userObject);
     localStorage.setItem("user", JSON.stringify(user));
-    changeRuleName();
+    changeHTMLrule();
     clearinputs();
-    removeValidations();
     addfloating();
-  } else {
+    passWordEmpity();
+    removeValidations();
+  } else if  ( passWord.value == "user" && passWord.value == "user"
+    ) {
+
+    toplogin.classList.add("topLoginAnimation");
+    bottomlogin.classList.add("bottomLoginAnimation");
+    var userObject = {
+      NameUser: userName.value,
+      passWordUser: passWord.value,
+    };
+    user.push(userObject);
+    localStorage.setItem("user", JSON.stringify(user));
+    changeHTMLrule();
+    clearinputs();
+    addfloating();
+    passWordEmpity();
+    removeValidations();
+  }
+  
+  else {
     if (validationInputs() != true) {
       userName.classList.add("is-invalid");
       if (userName.value == "") {
+        validationInLoginUserName()
       }
     }
-    if (passWord.value == "") {
+    else if (passWord.value == "") {
       passWord.classList.add("is-invalid");
-      validationInLogin();
+      validationInLoginPassWord()
+    }
+    else if (checkPasswordValid() != true) {
+      passWord.classList.add("is-invalid");
+      validationInLoginPassWord()
     }
   }
 }
@@ -311,6 +331,9 @@ loginUserBtn.addEventListener("click", function (e) {
   menuToggle.classList.toggle("activeToggle");
   e.stopPropagation();
 });
+loginUserBtn.addEventListener("click", function () {
+  menuToggle.classList.toggle("d-none");
+});
 
 document.addEventListener("click", function (e) {
   if (e.target != loginUserBtn && e.target != menuToggle) {
@@ -324,9 +347,9 @@ menuToggle.addEventListener("click", function (e) {
   e.stopPropagation();
 });
 
+// Change Rule Sites Buttons
 var SwitchBtn = document.getElementById("SwitchBtn");
 var logoutBtn = document.getElementById("logoutBtn");
-
 SwitchBtn.addEventListener("click", function () {
   localStorage.removeItem("user");
   toplogin.classList.remove("topLoginAnimation");
@@ -334,6 +357,9 @@ SwitchBtn.addEventListener("click", function () {
   toplogin.classList.remove("d-none");
   bottomlogin.classList.remove("d-none");
   user = [];
+  bookMark.classList.add('d-none');
+  adminPage.classList.add('d-none');
+  menuToggle.classList.add("d-none");
 });
 logoutBtn.addEventListener("click", function () {
   localStorage.removeItem("user");
@@ -342,15 +368,34 @@ logoutBtn.addEventListener("click", function () {
   toplogin.classList.remove("d-none");
   bottomlogin.classList.remove("d-none");
   user = [];
+  bookMark.classList.add('d-none');
+  adminPage.classList.add('d-none');
+  menuToggle.classList.add("d-none");
 });
+// Change Rule Sites Buttons
 
-// start Validation
 
-var regexUseName = /^admin|user$/;
-var regexPassword = /^admin|user$/;
+// Start Validation LogIn
+var regexUseName = /^(admin|user)$/;
+var regexPassword = /^(admin|user)$/;
 
-/* userName
-passWord */
+// Real Time Validation >>>>
+function passWordEmpity() {
+  if (regexPassword.test(passWord.value) == false) {
+    passWord.classList.add("is-invalid");
+  }
+}
+
+
+
+function checkPasswordValid() {
+  if (regexPassword.test(passWord.value) == false) {
+    return false ;
+  } else {
+    return true ;
+  }
+}
+
 
 userName.addEventListener("input", function () {
   validationInputs();
@@ -372,11 +417,13 @@ function validationInputs() {
     return false;
   }
 }
-
 passWord.addEventListener("input", function () {
   validationInTypeRemove();
   passWord.classList.remove("is-invalid");
 });
+
+
+// Clear After Check Every Thing Is Oky >>>>>
 
 function removeValidations() {
   passWord.classList.remove("is-invalid");
@@ -384,12 +431,15 @@ function removeValidations() {
   userName.classList.remove("is-invalid");
   userName.classList.remove("is-valid");
 }
+// End Validation LogIn
 
-var validationSpan1 = document.querySelector(".validationSpan1");
-var validationSpan2 = document.querySelector(".validationSpan2");
+var validationSpan1 = document.querySelector(".validationSpan1"); // icon for user name
+var validationSpan2 = document.querySelector(".validationSpan2"); // icon for password
 
-function validationInLogin() {
+function validationInLoginUserName() {
   validationSpan1.classList.remove("d-none");
+}
+function validationInLoginPassWord() {
   validationSpan2.classList.remove("d-none");
 }
 function validationInTypeRemove() {
@@ -397,43 +447,80 @@ function validationInTypeRemove() {
   validationSpan2.classList.add("d-none");
 }
 
-let userNameLogin = document.getElementById("userNameLogin");
 
-function changeRuleName() {
-  if (JSON.parse(localStorage.getItem("user") != null)) {
-    var checkStatusLogin = JSON.parse(localStorage.getItem("user"));
-    if (checkStatusLogin[0].NameUser == "user") {
-      userNameLogin.innerHTML = "user";
-    } else if (checkStatusLogin[0].NameUser == "admin") {
-      userNameLogin.innerHTML = "admin";
+// End Change User rule In HTML
+if (localStorage.getItem('user') != null ) {
+  var localRule =  JSON.parse(localStorage.getItem('user'))[0].NameUser;
+}
+var adminText = document.querySelector('.adminText');
+var userText = document.querySelector('.userText');
+var adminPage = document.getElementById('admin');
+var bookMark = document.getElementById('bookMark');
+
+  function changeHTMLrule() {
+    if (userName.value == 'admin') {
+      adminText.classList.remove('d-none');
+      userText.classList.add('d-none');
+      localStorage.setItem("user", JSON.stringify(user));
+      adminPage.classList.remove('d-none');
+      bookMark.classList.add('d-none');
+    }
+    
+    else  if (userName.value == 'user') {
+      userText.classList.remove('d-none');
+      adminText.classList.add('d-none');
+      localStorage.setItem("user", JSON.stringify(user));
+      adminPage.classList.add('d-none');
+      bookMark.classList.remove('d-none');
     }
   }
-  console.log(checkStatusLogin);
+  // local
+
+
+if (localStorage.getItem('user') != null) {
+  if (localRule == 'admin') {
+    adminText.classList.remove('d-none');
+    adminPage.classList.remove('d-none');
+    bookMark.classList.add('d-none');
+    
+  }
+  
+  else  if (localRule == 'user') {
+    userText.classList.remove('d-none');
+    adminPage.classList.add('d-none');
+    bookMark.classList.remove('d-none');
+  }
 }
 
-var floatingLogin = document.getElementById("floatingLogin");
 
+
+// End Change User rule In HTML
+
+// Start Walk LAyer
+var floatingLogin = document.getElementById("floatingLogin");
 function addfloating() {
   floatingLogin.classList.remove("d-none");
   setTimeout(function () {
     floatingLogin.classList.add("d-none");
   }, 4000);
 }
+// End Walk LAyer
 
-// Clear Crud From Items
-
+// Start  Clear Crud From Items
+var storeClear = document.getElementById("storeClear");
+storeClear.addEventListener("click", () => {
+  clearCrudFromItems();
+  adddecrement();
+});
 function clearCrudFromItems() {
   allProducts = [];
   localStorage.removeItem("products");
   displayData();
   totalPrices();
 }
-var storeClear = document.getElementById("storeClear");
-storeClear.addEventListener("click", () => {
-  clearCrudFromItems();
-  adddecrement();
-});
+// End  Clear Crud From Items
 
+// Start Add Icons For Total Items
 var increment = document.getElementById("increment");
 var decrement = document.getElementById("decrement");
 
@@ -454,3 +541,6 @@ function adddecrement() {
     decrement.classList.remove("decrement");
   }, 500);
 }
+// Etart Add Icons For Total Items
+
+
