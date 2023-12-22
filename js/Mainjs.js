@@ -152,7 +152,7 @@ function displayData() {
     productShow += `  <tr>
     <td >${i + 1}</td>
     <td>${allProducts[i].productName}</td>
-    <td>${allProducts[i].price}</td>
+    <td>${allProducts[i].price} $ </td>
     <td>${allProducts[i].type}</td>
     <td>${allProducts[i].condition}</td>
     <td>
@@ -227,7 +227,7 @@ function searchRealTime() {
       productShow += `  <tr>
     <td >${i + 1}</td>
     <td>${allProducts[i].newName}</td>
-    <td>${allProducts[i].price}</td>
+    <td>${allProducts[i].price} $ </td>
     <td>${allProducts[i].type}</td>
     <td>${allProducts[i].condition}</td>
     <td>

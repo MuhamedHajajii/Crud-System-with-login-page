@@ -94,38 +94,76 @@
 </div>
       <div class="firstLine d-flex">
         <div class="ps-5 pe-2 flex-grow-1">
-          <label class="text-capitalize fs-4 text-white mt-2" for="productName">Product Name :</label>
-          <input list="Avilaproducts" type="search" id="productName" placeholder="ex.iphone" class="form-control py-2">
+          <label class="text-capitalize fs-5 text-white mt-2" for="productName">Product Name :</label>
+          <input list="Avilaproducts" type="search" id="productName" placeholder="ex.  iphone" class="form-control py-2">
           <datalist id="Avilaproducts">
-            <option value="Iphone 15 Pro Max"></option>
-            <option value="Iphone 15"></option>
-            <option value="Iphone 15 Pro"></option>
-            <option value="Airpods Pro Generation 2 "></option>
+            <option value="Iphone 15 Pro Max 256gb"></option>
+            <option value="Iphone 14 Pro Max  256gb"></option>
+            <option value="Iphone 12 Pro Max  256gb"></option>
+            <option value="Iphone 11 Pro Max  256gb"></option>
+            <option value="Iphone 15 Pro  256gb"></option>
+            <option value="Iphone 14 Pro  256gb"></option>
+            <option value="Iphone 13 Pro  256gb"></option>
+            <option value="Iphone 12 Pro  256gb"></option>
+            <option value="Iphone 11 Pro  256gb"></option>
+            <option value="Iphone 15  256gb"></option>
+            <option value="Iphone 14  256gb"></option>
+            <option value="Iphone 13  256gb"></option>
+            <option value="Iphone 12  256gb"></option>
+            <option value="Iphone 11  256gb"></option>
+            <option value="Iphone xs max  256gb"></option>
+            <option value="Airpods"></option>
+            <option value="Airpods Pro"></option>
+            <option value="Airpods Pro (2nd genereation)"></option>
+            <option value="Airpods Pro Max"></option>
+            <option value="MacBook Air"></option>
+            <option value="MacBook pro"></option>
+            <option value="Mac Mini"></option>
+            <option value="iMac"></option>
+            <option value="Mac Pro"></option>
+            <option value="Mac Studio"></option>
+            <option value="Apple Watch Series 9"></option>
+            <option value="Apple Watch Series 8"></option>
+            <option value="Apple Watch SE"></option>
+            <option value="Apple TV"></option>
+            <option value="Apple TV 4k"></option>
             <option value=""></option>
           </datalist>
           </div>
           <div class="pe-5 ps-2">
-          <label class="text-capitalize fs-4 text-white mt-2" for="productRepeat">num :</label>
-          <input type="number" id="productRepeat" placeholder="ex.1,2,3" class="form-control py-2">
+          <label class="text-capitalize fs-5 text-white mt-2" for="productRepeat">items amount :</label>
+          <input type="number" id="productRepeat" placeholder="ex.  1 or mroe" class="form-control py-2">
           </div>
       </div>
-      <div class="px-5">
-      <label class="text-capitalize fs-4 text-white mt-2" for="productPrice">Product Price :</label>
-      <input type="text" id="productPrice" placeholder="ex.1000.LE" class="form-control py-2">
+      <div class="d-flex">
+        <div class="ps-5 pe-2 flex-grow-1">
+          <label class="text-capitalize fs-5 text-white mt-2" for="productPrice">Product Price :</label>
+          <input type="text" id="productPrice" placeholder="ex.  1000 $" class="form-control py-2">
+          </div>
+          <div class="pe-5 ps-2 flex-grow-1">
+          <label class="text-capitalize fs-5 text-white mt-2" for="productType">Product Type :</label>
+          <input list="AvaliableModels" type="text" id="productType" placeholder="ex.  Mobile" class="form-control py-2">
+          </div>
+          <datalist id="AvaliableModels">
+            <option value="iPhone"></option>
+            <option value="iPad"></option>
+            <option value="Mac"></option>
+            <option value="Apple Watch"></option>
+            <option value="AirPods"></option>
+            <option value="AppleTv"></option>
+            <option value="AirTag"></option>
+            <option value="Accessories"></option>
+          </datalist>
       </div>
       <div class="px-5">
-      <label class="text-capitalize fs-4 text-white mt-2" for="productType">Product Type :</label>
-      <input type="text" id="productType" placeholder="ex.Mobile" class="form-control py-2">
-      </div>
-      <div class="px-5">
-      <label class="text-capitalize fs-4 text-white mt-2" for="productCondition">Product description :</label>
-      <input type="text" id="productCondition" placeholder="ex.Used" class="form-control py-2">
+      <p class="form-label text-capitalize fs-5 text-white mt-2" for="productCondition">Product description :</p>
+      <textarea id="productCondition" placeholder="ex.  Used" class="form-control py-2"></textarea>
     </div>
     <div class="d-flex px-5">
-      <button id="storeClear" class="flex-grow-1 btn btn-danger w-25 d-block me-3 mt-3">Clear Store <i class="ps-2 fa-solid fa-circle-exclamation"></i></button>
-      <button id="addProduct" class="flex-grow-1 btn btn-primary w-25 d-block ms-3 mt-3">Add Product <i class=" ps-2 fa-solid fa-circle-plus"></i></button>
+      <button id="storeClear" class="flex-grow-1 btn btn-danger w-50 d-block me-3 mt-3">Clear Store <i class="ps-2 fa-solid fa-circle-exclamation"></i></button>
+      <button id="addProduct" class="flex-grow-1 btn btn-primary w-50 d-block ms-3 mt-3">Add Product <i class=" ps-2 fa-solid fa-circle-plus"></i></button>
+      <button id="updateProductBtn" class="btn flex-grow-1 btn-warning w-50 d-none d-block mx-auto ms-3 mt-3 text-white">update Product</button>
     </div>
-    <button id="updateProductBtn" class="btn btn-warning w-50 d-none d-block mx-auto my-3 text-white">update Product</button>
     <div class="px-5 mb-3 w-25">
       <label class="text-capitalize fs-6 text-white text-start d-block" for="searchInput">Search...</label>
       <input type="search" id="searchInput" class="form-control py-2" placeholder="Search Product Name...">
