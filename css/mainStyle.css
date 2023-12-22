@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Righteous&display=swap');
+
+.toplogin {
+  position: fixed;
+  bottom: 50%;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(to bottom, black, rgb(89, 89, 143));
+
+}
+.userName {
+  bottom: 2.5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bottomlogin {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  top: 50%;
+  right: 0;
+  background-image: linear-gradient(to bottom, rgb(89, 89, 143), black);
+}
+.passWord {
+  top: 2.5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.userName::after {
+  content: '';
+  background-color: rgba(255, 255, 255, 0.5);
+  inset: -30%;
+  position: absolute;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  bottom: -25%;
+  z-index: -1;
+}
+
+.passWord::after {
+  content: '';
+  background-color: rgba(255, 255, 255, 0.5);
+  inset: -30%;
+  position: absolute;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  z-index: -1;
+  top: -9.5%;
+}
+.topLoginAnimation {
+  animation:toplogin 1.5s 4s;
+  animation-fill-mode: forwards;
+}
+@keyframes toplogin {
+  from {
+    bottom: 50%;
+    opacity: 1;
+  }
+  to {
+    bottom: 100%;
+    opacity: 0;
+  }
+}
+.bottomLoginAnimation {
+  animation: bottomlogin 1.5s 4s;
+  animation-fill-mode: forwards;
+}
+@keyframes bottomlogin {
+  from {
+    top: 50%;
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+h2 {
+  text-shadow: 2px 2px 15px black;
+  opacity: 0.80;
+}
+
+.loginStatus {
+  width: 150px;
+  height: 50px;
+  background-color: white;
+  position: absolute;
+  border-radius:100vh ;
+  padding: 15px;
+  display: flex;
+  justify-content:start;
+  align-items: center;
+  left: 3%;
+}
+
+.loginUser {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: #eee;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#userNameLogin {
+  font-size: 16px;
+  font-weight: 500;
+  flex: 1;
+  align-self: flex-start;
+  margin-left: 8px;
+}
+
+.buttonsul {
+  list-style: none;
+  padding: 0;
+}
+
+.btnCountiner {
+  width: 150px ;
+  background-color: #eee;
+  height: 150px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border-radius: 15px;
+  opacity: 0;
+}
+.activeToggle {
+  animation: tranformLognin 0.5s forwards;
+}
+.btnCountiner::after {
+  content: '';
+  position: absolute;
+  border: 15px solid;
+  border-color: transparent transparent #eeeeee transparent;
+  top: -30px;
+}
+@keyframes tranformLognin {
+  from{
+    top: 100%;
+    opacity: 0;
+  }
+  to {
+    top: 110%;
+    opacity: 1;
+  }
+}
+
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: none;
+  border-color: transparent;
+  outline: 0;
+  box-shadow: none;
+}
+
+#floatingLogin {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+@keyframes walkanim {
+  to { background-position: 100% 0; }
+}
+@keyframes stroll {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(800%); }
+}
+#walk-container {
+	display: inline-block;
+	position: absolute;
+	width: 20%;
+	padding-bottom: 30%; 
+	vertical-align: middle; 
+  animation: stroll 5.5s linear forwards;
+  z-index: 555555555555;
+  inset: 0;
+}
+#walk {
+	display: inline-block;
+	position: absolute;
+	top: 25%;
+	left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/walk-sequence.svg');
+  background-repeat: no-repeat;
+  background-size: 800%;
+  animation: walkanim 1s infinite steps(7);
+  z-index: 555555555555;
+}
+.top-25 {
+  top: 7.5%;
+}
+
+.one {
+  animation: alternate-reverse animationWelcome 0.3s 0.3s  ;
+  
+}
+.Two{
+  animation: alternate-reverse animationWelcome 0.3s 0.6s ;
+  
+}
+.Three{
+  animation: alternate-reverse animationWelcome 0.3s 0.9s ;
+  
+}
+.Four{
+  animation: alternate-reverse animationWelcome 0.3s 1.2s ;
+  
+}
+.Five{
+  animation: alternate-reverse animationWelcome 0.3s 1.5s ;
+  
+}
+.Six{
+  animation: alternate-reverse animationWelcome 0.3s 1.8s ;
+  
+}
+.Seven{
+  animation: alternate-reverse animationWelcome 0.3s 2.1s ;
+}
+@keyframes animationWelcome {
+  from {
+    transform: translatey(px);
+  }
+  to {
+    transform: translatey(-15px);
+    
+  }
+}
+
+.woelcomeParent{
+  letter-spacing: 6px;
+  color: rgba(172, 255, 47, 0.671);
+  font-family:'Pacifico', cursive;
+}
+
+.bgtransparent {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+}
+
+body {
+  background-image: url(../imges/1.jpg);
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.bg-crud {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#spanIncrementIcons i:nth-child(1) {
+
+  color: greenyellow;
+}
+.increment {
+  transform: translatey(5px);
+  animation: increment 1s ;
+}
+@keyframes increment {
+  from {
+    transform: translatey(5px);
+    opacity: 1;
+
+  }
+  to {
+    transform: translatey(-5px);
+    opacity: 0;
+  }
+}
+#spanIncrementIcons i:nth-child(2) {
+
+  color: red;
+}
+.decrement {
+  transform: translatey(-5px);
+  animation: decrement 1s ;
+}
+
+@keyframes decrement {
+  from {
+    transform: translatey(-5px);
+    opacity: 1;
+
+  }
+  to {
+    transform: translatey(5px);
+    opacity: 0;
+  }
+}
+
+.bg-welcome {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+

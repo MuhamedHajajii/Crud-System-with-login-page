@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crud V.1</title>
+  <!-- Start Font Awesome  -->
+  <link rel="stylesheet" href="./css/all.min.css">
+  <!-- Start Boot Strap  -->
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <!-- Start Main Style -->
+  <link rel="stylesheet" href="./css/mainStyle.css">
+</head>
+<body>
+
+  <div class="loginStatus">
+    <div id="loginUser" class="loginUser">
+      <i class="fa-solid fa-user-large"></i>
+    </div>
+    <p id="userNameLogin">admin</p>
+    <div id="menuToggle" class="btnCountiner d-flex flex-column justify-content-center align-items-center">
+      <ul class='buttonsul'>
+        <li>
+        <button id="SwitchBtn" class="btn w-100 btn-secondary d-block">Switch Rules</button>
+        </li>
+        <li>
+          <button id="logoutBtn" class="btn w-100 my-2 btn-danger  d-block">Log Out</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<!-- Start Log in Form -->
+    <div class="fixed-top top-0 start-0 end-0 bottom-0 d-none" id="floatingLogin">
+      <div class="bgtransparent w-50 h-50 mx-auto top-50 start-50 translate-middle position-absolute overflow-hidden">
+          <div id="walk-container">
+            <div id="walk">
+            </div>
+            <div class="p-3 rounded-5 bg-welcome fw-bolder woelcomeParent position-absolute start-0 top-25 d-flex justify-content-center align-items-end">
+            <span class="one fs-1">W</span>
+            <span class="Two fs-1">e</span>
+            <span class="Three fs-1">l</span>
+            <span class="Four fs-1">c</span>
+            <span class="Five fs-1">o</span>
+            <span class="Six fs-1">m</span>
+            <span class="Seven fs-1">e</span>
+            <span><i class="fa-regular fa-hand-spock fa-shake fs-2"></i></span>
+            </div> 
+          </div>
+      </div>
+    </div>
+    <div id="toplogin" class="toplogin">
+      <h2 class=" position-absolute start-50 top-50 translate-middle text-light h1 text-uppercase">
+        Crud System Login
+        <i class="fa-solid fa-right-to-bracket"></i>
+      </h2>
+      <div class="is-valid userName position-absolute w-25">
+        <label class="text-white d-flex justify-content-between" for="userName"><p class="m-0">User Name</p>
+          <span class="validationSpan1 m-0 p-0 text-danger d-none">please fill this input
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </span>
+        </label>
+        <input placeholder="ex.admin" id="userName" class=" form-control" type="text">
+      </div>
+    </div>
+    <div id="bottomlogin" class="bottomlogin overflow-hidden">
+      <div class="passWord w-25 position-absolute">
+        <label class="text-white d-flex justify-content-between" for="passWord"><p class="m-0">PassWord</p>
+          <span class="validationSpan2 m-0 p-0 text-danger d-none">please fill this input
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </span>
+        </label>
+        <input placeholder="ex.admin" id="passWord" class="form-control" type="password">
+        <button id="LoginBtn" class="btn btn-danger mt-3 px-4 mx-auto d-block">Login</button>
+      </div>
+  </div>
+<!-- Start Crud System -->
+  <div class="container bg-crud py-3 rounded mt-5">
+    <div>
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <h1 class="text-white d-inline-block rounded-2 p-3 text-center text-uppercase bg-dark">Crud System</h1>
+  <p class="fs-6 badge bg-secondary pe-4">Store items: <span class="ps-2" id="totalPrice"></span> 
+    <span id="spanIncrementIcons" class="ps-2 position-relative">
+      <i id="increment" class="d-none position-absolute fa-solid fa-up-long"></i>
+      <i id="decrement" class="d-none position-absolute fa-solid fa-down-long"></i>
+  </span></p>
+</div>
+      <div class="firstLine d-flex">
+        <div class="ps-5 pe-2 flex-grow-1">
+          <label class="text-capitalize fs-4 text-white mt-2" for="productName">Product Name :</label>
+          <input list="Avilaproducts" type="search" id="productName" placeholder="ex.iphone" class="form-control py-2">
+          <datalist id="Avilaproducts">
+            <option value="Iphone 15 Pro Max"></option>
+            <option value="Iphone 15"></option>
+            <option value="Iphone 15 Pro"></option>
+            <option value="Airpods Pro Generation 2 "></option>
+            <option value=""></option>
+          </datalist>
+          </div>
+          <div class="pe-5 ps-2">
+          <label class="text-capitalize fs-4 text-white mt-2" for="productRepeat">num :</label>
+          <input type="number" id="productRepeat" placeholder="ex.1,2,3" class="form-control py-2">
+          </div>
+      </div>
+      <div class="px-5">
+      <label class="text-capitalize fs-4 text-white mt-2" for="productPrice">Product Price :</label>
+      <input type="text" id="productPrice" placeholder="ex.1000.LE" class="form-control py-2">
+      </div>
+      <div class="px-5">
+      <label class="text-capitalize fs-4 text-white mt-2" for="productType">Product Type :</label>
+      <input type="text" id="productType" placeholder="ex.Mobile" class="form-control py-2">
+      </div>
+      <div class="px-5">
+      <label class="text-capitalize fs-4 text-white mt-2" for="productCondition">Product description :</label>
+      <input type="text" id="productCondition" placeholder="ex.Used" class="form-control py-2">
+    </div>
+    <div class="d-flex px-5">
+      <button id="storeClear" class="flex-grow-1 btn btn-danger w-25 d-block me-3 mt-3">Clear Store <i class="ps-2 fa-solid fa-circle-exclamation"></i></button>
+      <button id="addProduct" class="flex-grow-1 btn btn-primary w-25 d-block ms-3 mt-3">Add Product <i class=" ps-2 fa-solid fa-circle-plus"></i></button>
+    </div>
+    <button id="updateProductBtn" class="btn btn-warning w-50 d-none d-block mx-auto my-3 text-white">update Product</button>
+    <div class="px-5 mb-3 w-25">
+      <label class="text-capitalize fs-6 text-white text-start d-block" for="searchInput">Search...</label>
+      <input type="search" id="searchInput" class="form-control py-2" placeholder="Search Product Name...">
+    </div>
+    </div>
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Type</th>
+          <th>description</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+
+<!-- Start Bootstrap js  -->
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <!-- Starm Main js -->
+  <script src="js/Mainjs.js"></script>
+</body>
+</html>
