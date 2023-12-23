@@ -11,9 +11,58 @@ var productRepeat = document.getElementById("productRepeat");
 var updateIndex = 0;
 var allProducts = [];
 
+// Start Products Count
+// select options tags Name >>
+var allProductsInOptions = document.querySelectorAll("#Avilaproducts option");
+// place the Founded item name
+// for loop items
+var prepareProducts = "";
+var productsCounterContainer = document.getElementById("singleProductAmout");
+
+var checkTypeinLocalOutput = [];
+function lookFirstLocalStorage() {
+  checkTypeinLocalOutput = [];
+  prepareProducts = "";
+  var checkTypeinLocal = JSON.parse(localStorage.getItem("products"));
+  if (localStorage.getItem("products") != null) {
+    for (var gg = 0; gg < checkTypeinLocal.length; gg++) {
+      if (checkTypeinLocalOutput.includes(checkTypeinLocal[gg].productName) == false) {
+        checkTypeinLocalOutput.push(checkTypeinLocal[gg].productName);
+      prepareProducts += `
+    <p class="border-bottom border-5 pb-2">
+    <span class="d-block productNameCount pb-1" >${checkTypeinLocal[gg].productName}</span>
+  </p>
+    `;
+    }
+      }
+  }
+  console.log(checkTypeinLocalOutput);
+  productsCounterContainer.innerHTML = prepareProducts;
+}
+console.log(checkTypeinLocalOutput);
+
+// productsCounter();
+/* 
+// push founded items
+var productsinnerHTML = [];
+
+function productsCounter() {
+    if (localStorage.getItem("products") != null) {
+    for (var i = 0; i < allProductsInOptions.length; i++) {
+      productsinnerHTML.push(allProductsInOptions[i].value);
+      if (productsinnerHTML.includes(allProductsInOptions[i].value)) {
+        
+      }
+    }
+}
+}
+ */
+// End Products Count
+
 if (localStorage.getItem("products") != null) {
   allProducts = JSON.parse(localStorage.getItem("products"));
   displayData();
+  lookFirstLocalStorage();
   totalPrices();
 }
 // Start Validition
@@ -120,6 +169,7 @@ function addProduct() {
     } while (addCountTest <= productRepeat.value);
     localStorage.setItem("products", JSON.stringify(allProducts));
     displayData();
+    lookFirstLocalStorage()
     totalPrices();
     clearInputs();
     clearInputsValidition();
@@ -170,6 +220,7 @@ function deleteProduct(deleteIndex) {
   totalPrices();
   adddecrement();
   localStorage.setItem("products", JSON.stringify(allProducts));
+  lookFirstLocalStorage();
   searchInput.value = "";
 }
 
@@ -264,8 +315,7 @@ document.addEventListener("keydown", function (e) {
 });
 
 function loginDisplayChecked() {
-  if (userName.value == "admin" && passWord.value == "admin" ) {
-
+  if (userName.value == "admin" && passWord.value == "admin") {
     toplogin.classList.add("topLoginAnimation");
     bottomlogin.classList.add("bottomLoginAnimation");
     var userObject = {
@@ -279,9 +329,7 @@ function loginDisplayChecked() {
     addfloating();
     passWordEmpity();
     removeValidations();
-  } else if  ( passWord.value == "user" && passWord.value == "user"
-    ) {
-
+  } else if (passWord.value == "user" && passWord.value == "user") {
     toplogin.classList.add("topLoginAnimation");
     bottomlogin.classList.add("bottomLoginAnimation");
     var userObject = {
@@ -295,22 +343,18 @@ function loginDisplayChecked() {
     addfloating();
     passWordEmpity();
     removeValidations();
-  }
-  
-  else {
+  } else {
     if (validationInputs() != true) {
       userName.classList.add("is-invalid");
       if (userName.value == "") {
-        validationInLoginUserName()
+        validationInLoginUserName();
       }
-    }
-    else if (passWord.value == "") {
+    } else if (passWord.value == "") {
       passWord.classList.add("is-invalid");
-      validationInLoginPassWord()
-    }
-    else if (checkPasswordValid() != true) {
+      validationInLoginPassWord();
+    } else if (checkPasswordValid() != true) {
       passWord.classList.add("is-invalid");
-      validationInLoginPassWord()
+      validationInLoginPassWord();
     }
   }
 }
@@ -357,8 +401,8 @@ SwitchBtn.addEventListener("click", function () {
   toplogin.classList.remove("d-none");
   bottomlogin.classList.remove("d-none");
   user = [];
-  bookMark.classList.add('d-none');
-  adminPage.classList.add('d-none');
+  bookMark.classList.add("d-none");
+  adminPage.classList.add("d-none");
   menuToggle.classList.add("d-none");
 });
 logoutBtn.addEventListener("click", function () {
@@ -368,12 +412,11 @@ logoutBtn.addEventListener("click", function () {
   toplogin.classList.remove("d-none");
   bottomlogin.classList.remove("d-none");
   user = [];
-  bookMark.classList.add('d-none');
-  adminPage.classList.add('d-none');
+  bookMark.classList.add("d-none");
+  adminPage.classList.add("d-none");
   menuToggle.classList.add("d-none");
 });
 // Change Rule Sites Buttons
-
 
 // Start Validation LogIn
 var regexUseName = /^(admin|user)$/;
@@ -386,16 +429,13 @@ function passWordEmpity() {
   }
 }
 
-
-
 function checkPasswordValid() {
   if (regexPassword.test(passWord.value) == false) {
-    return false ;
+    return false;
   } else {
-    return true ;
+    return true;
   }
 }
-
 
 userName.addEventListener("input", function () {
   validationInputs();
@@ -422,7 +462,6 @@ passWord.addEventListener("input", function () {
   passWord.classList.remove("is-invalid");
 });
 
-
 // Clear After Check Every Thing Is Oky >>>>>
 
 function removeValidations() {
@@ -447,52 +486,43 @@ function validationInTypeRemove() {
   validationSpan2.classList.add("d-none");
 }
 
-
 // End Change User rule In HTML
-if (localStorage.getItem('user') != null ) {
-  var localRule =  JSON.parse(localStorage.getItem('user'))[0].NameUser;
+if (localStorage.getItem("user") != null) {
+  var localRule = JSON.parse(localStorage.getItem("user"))[0].NameUser;
 }
-var adminText = document.querySelector('.adminText');
-var userText = document.querySelector('.userText');
-var adminPage = document.getElementById('admin');
-var bookMark = document.getElementById('bookMark');
+var adminText = document.querySelector(".adminText");
+var userText = document.querySelector(".userText");
+var adminPage = document.getElementById("admin");
+var bookMark = document.getElementById("bookMark");
 
-  function changeHTMLrule() {
-    if (userName.value == 'admin') {
-      adminText.classList.remove('d-none');
-      userText.classList.add('d-none');
-      localStorage.setItem("user", JSON.stringify(user));
-      adminPage.classList.remove('d-none');
-      bookMark.classList.add('d-none');
-    }
-    
-    else  if (userName.value == 'user') {
-      userText.classList.remove('d-none');
-      adminText.classList.add('d-none');
-      localStorage.setItem("user", JSON.stringify(user));
-      adminPage.classList.add('d-none');
-      bookMark.classList.remove('d-none');
-    }
-  }
-  // local
-
-
-if (localStorage.getItem('user') != null) {
-  if (localRule == 'admin') {
-    adminText.classList.remove('d-none');
-    adminPage.classList.remove('d-none');
-    bookMark.classList.add('d-none');
-    
-  }
-  
-  else  if (localRule == 'user') {
-    userText.classList.remove('d-none');
-    adminPage.classList.add('d-none');
-    bookMark.classList.remove('d-none');
+function changeHTMLrule() {
+  if (userName.value == "admin") {
+    adminText.classList.remove("d-none");
+    userText.classList.add("d-none");
+    localStorage.setItem("user", JSON.stringify(user));
+    adminPage.classList.remove("d-none");
+    bookMark.classList.add("d-none");
+  } else if (userName.value == "user") {
+    userText.classList.remove("d-none");
+    adminText.classList.add("d-none");
+    localStorage.setItem("user", JSON.stringify(user));
+    adminPage.classList.add("d-none");
+    bookMark.classList.remove("d-none");
   }
 }
+// local
 
-
+if (localStorage.getItem("user") != null) {
+  if (localRule == "admin") {
+    adminText.classList.remove("d-none");
+    adminPage.classList.remove("d-none");
+    bookMark.classList.add("d-none");
+  } else if (localRule == "user") {
+    userText.classList.remove("d-none");
+    adminPage.classList.add("d-none");
+    bookMark.classList.remove("d-none");
+  }
+}
 
 // End Change User rule In HTML
 
@@ -517,6 +547,7 @@ function clearCrudFromItems() {
   localStorage.removeItem("products");
   displayData();
   totalPrices();
+  lookFirstLocalStorage();
 }
 // End  Clear Crud From Items
 
@@ -542,5 +573,3 @@ function adddecrement() {
   }, 500);
 }
 // Etart Add Icons For Total Items
-
-
