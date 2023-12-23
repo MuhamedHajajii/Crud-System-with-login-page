@@ -10,7 +10,11 @@ var totalPrice = document.getElementById("totalPrice");
 var productRepeat = document.getElementById("productRepeat");
 var updateIndex = 0;
 var allProducts = [];
-
+if (localStorage.getItem("products") != null) {
+  allProducts = JSON.parse(localStorage.getItem("products"));
+  displayData();
+  totalPrices();
+}
 // Start Products Count
 // select options tags Name >>
 var allProductsInOptions = document.querySelectorAll("#Avilaproducts option");
@@ -32,39 +36,21 @@ function lookFirstLocalStorage() {
     <p class="border-bottom border-5 pb-2">
     <span class="d-block productNameCount pb-1" >${checkTypeinLocal[gg].productName}</span>
   </p>
-    `;
-    }
-      }
-  }
-  console.log(checkTypeinLocalOutput);
-  productsCounterContainer.innerHTML = prepareProducts;
+  `;
 }
-console.log(checkTypeinLocalOutput);
+productsCounterContainer.innerHTML = prepareProducts;
+}
+}
+}
 
-// productsCounter();
-/* 
-// push founded items
-var productsinnerHTML = [];
 
-function productsCounter() {
-    if (localStorage.getItem("products") != null) {
-    for (var i = 0; i < allProductsInOptions.length; i++) {
-      productsinnerHTML.push(allProductsInOptions[i].value);
-      if (productsinnerHTML.includes(allProductsInOptions[i].value)) {
-        
-      }
-    }
-}
-}
- */
-// End Products Count
+
+
 
 if (localStorage.getItem("products") != null) {
-  allProducts = JSON.parse(localStorage.getItem("products"));
-  displayData();
   lookFirstLocalStorage();
-  totalPrices();
 }
+
 // Start Validition
 
 var nameProdictRegex = /^[a-zA-Z0-9 ]{5,}$/;
